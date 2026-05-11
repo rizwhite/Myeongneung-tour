@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탐험 2 - 명릉 홍살문</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .scroll-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px 25px 120px 25px;
+            display: none;
+            flex-direction: column;
+        }
+
+        .scroll-content.active {
+            display: flex;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .img-box {
+            width: 100%;
+            height: auto;
+            max-height: 50vh;
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background: linear-gradient(to top, rgba(255,255,255,1) 80%, rgba(255,255,255,0));
+            display: none;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .bottom-bar.active {
+            display: flex;
+        }
+
+        .btn {
+            background-color: #4A60A1; 
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            max-width: 400px;
+            transition: 0.2s;
+            box-shadow: 0 4px 10px rgba(74, 96, 161, 0.2);
+        }
+
+        .title { font-size: 20px; font-weight: 800; margin-bottom: 25px; line-height: 1.5; color: #222; }
+        .desc { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 20px; }
+        .center-text { text-align: center; margin: auto; }
+        b { color: #000; }
+        .red-text { color: #d32f2f; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <div class="scroll-content active" id="page1">
+        <div class="center-text title">
+            <span style="font-size: 0.9rem; color: #888; font-weight: 400;">세계유산 조선왕릉 가족 탐험대</span><br><br>
+            탐험 2 명릉 홍살문<br>『금천교와 홍살문』
+        </div>
+    </div>
+    <div class="bottom-bar active" id="btn1">
+        <button class="btn" onclick="nextPage(2)">탐험 시작</button>
+    </div>
+
+    <div class="scroll-content" id="page2">
+        <div class="center-text title">
+            탐험대원님, 환영합니다!<br><br>
+            지금부터 조선왕릉의 금천교와<br>홍살문에 대해 조사해봅시다!
+        </div>
+    </div>
+    <div class="bottom-bar" id="btn2">
+        <button class="btn" onclick="nextPage(3)">조사하기</button>
+    </div>
+
+    <div class="scroll-content" id="page3">
+        <div class="img-box">
+            <img src="https://drive.google.com/thumbnail?authuser=0&sz=w1600&id=1jx9fs32FP0UdblQSy00D8xixM9mkhRGl" alt="금천교">
+        </div>
+        <div class="title">금천교란?</div>
+        <div class="desc">
+            <b>금천교(禁川橋)</b><br>
+            개울을 건너는 것을 금하는 다리<br><br>
+            금천교는 이 다리를 건너면 왕과 왕비의 혼이 머무는 곳에 들어가는 것이기에 함부로 건너선 안 된다는 뜻이에요!<br><br>
+            그럼 우리는 <b>무엇을 주의해야 할까요?</b><br><br>
+            <b>하나, 속세의 것 버리기!</b> (금관, 돈 등)<br>
+            <b>둘, 마음을 깨끗하게!</b> (무기 등 금지)<br>
+            <b>셋, 정숙한 마음으로 건너기!<br><br>
+            </b>그리고 비린내가 나는 것도 들고 들어가선 안된답니다.<br><br>
+            금천교를 마음속으로 건너가 봅시다!<br><br>
+            <b>이제 홍살문을 관찰하러 가볼까요?
+        </div>
+    </div>
+    <div class="bottom-bar" id="btn3">
+        <button class="btn" onclick="nextPage(4)">홍살문 관찰하기</button>
+    </div>
+
+    <div class="scroll-content" id="page4">
+        <div class="img-box">
+            <img src="https://drive.google.com/thumbnail?authuser=0&sz=w1600&id=1JbbELaHj4cxObDGio48pUPvkbiB-XM2V" alt="홍살문">
+        </div>
+        <div class="title">홍살문이란?</div>
+        <div class="desc">
+            지금 여러분의 눈 앞엔 명릉의 홍살문이 보일 겁니다.<br><br>
+            </b>금천교를 건넌 여러분들은 이제 마음의 준비도 완료! 속세의 것도 다 버렸겠죠?<br>
+            그럼 홍살문을 통과하기 전에 이 문이 어떤 문인지를 알아볼까요?<br>
+            <b>홍살문(紅箭門)</b>은 능(陵)·원(園)·묘(廟)·궁전 또는 관아 따위의 정면에 세우는 붉은 칠을 한 나무 문.<br><br>
+            기둥과 기둥 사이 위에는 지붕이 없는 걸 볼 수 있죠?<br>
+            화살 모양의 뾰족한 나무를 나란히 박아서 연결하고, 그 가운데에는 삼지창을 설치하거나 태극 문양을 설치하였답니다.<br>
+            홍살문을 붉게 칠한 이유는 무엇일까요?<br><br>
+            <span class="red-text">붉은색</span>은 악귀를 물리치고, 상단의 화살과 삼지창은 나쁜 액운을 공격한다는 의미예요. 이곳을 통과하려면 향을 가지고 가야 하죠!<br>
+             그리고 화살이 총 몇 개일까요?<br><br>
+             이제 여러분들은 금천교와 홍살문을 무사히 잘 통과할 수 있게 되었답니다.<br>
+             <b>마지막으로 정리하기 위해서 활동지에 있는 지령지를 풀어볼까요?
+        </div>
+    </div>
+    <div class="bottom-bar" id="btn4">
+        <button class="btn" onclick="nextPage(5)">지령지 풀어보기</button>
+    </div>
+
+    <div class="scroll-content" id="page5">
+        <div class="img-box">
+            <img src="https://drive.google.com/thumbnail?authuser=0&sz=w1600&id=1QP5Gy5whJnNz24f1HHukJjPeDKWbL8tF" alt="금천교 지령지">
+        </div>
+        <div class="desc">
+            📌 활동지에 있는 지령지를 풀어볼까요? <br>금천교와 홍살문을 무사히 통과하기 위해 필요한 것들을 체크해 보세요!
+        </div>
+    </div>
+    <div class="bottom-bar" id="btn5">
+        <button class="btn" onclick="nextPage(6)">정답 확인하기</button>
+    </div>
+
+    <div class="scroll-content" id="page6">
+        <div class="img-box">
+            <img src="https://drive.google.com/thumbnail?authuser=0&sz=w1600&id=1hZsgvXnP-XloMU3D7ZcrSIrrTKIRkjiO" alt="금천교 정답지">
+        </div>
+        <div class="title" style="text-align: center; color: #d32f2f;"></div>
+        <div class="desc">
+            상설도 지령지까지 모두 완료했다면, <br>이제 홍살문을 지나 제향 공간으로 통과할 수 있습니다!
+        </div>
+    </div>
+    <div class="bottom-bar" id="btn6">
+        <button class="btn" onclick="nextPage(7)">탐험 완료</button>
+    </div>
+
+    <div class="scroll-content" id="page7">
+        <div class="center-text title">
+            ⛩️ 탐험 완료! ⛩️<br><br>명릉 홍살문 탐험을<br>성공적으로 마쳤습니다.
+        </div>
+    </div>
+    <div class="bottom-bar" id="btn7">
+        <button class="btn" onclick="location.reload()">다시 시작</button>
+    </div>
+
+</div>
+
+<script>
+    function nextPage(pageNum) {
+        document.querySelectorAll('.scroll-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.bottom-bar').forEach(el => el.classList.remove('active'));
+        
+        const targetPage = document.getElementById('page' + pageNum);
+        const targetBtn = document.getElementById('btn' + pageNum);
+        
+        if (targetPage && targetBtn) {
+            targetPage.classList.add('active');
+            targetBtn.classList.add('active');
+            targetPage.scrollTop = 0;
+        }
+    }
+</script>
+
+</body>
+</html>
